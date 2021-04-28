@@ -4,6 +4,7 @@ class Game {
     constructor(ctx) {
         this.ctx = ctx;
         this.snake = new Snake(ctx);
+        this.background = new Background(ctx)
         this.drawCount = 0;
         this.IntervalId= null;
 
@@ -22,7 +23,9 @@ class Game {
     }
 
     draw() {
+        this.background.draw()
         this.snake.draw()
+        
     }
 
     clear() {

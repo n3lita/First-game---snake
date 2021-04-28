@@ -1,27 +1,33 @@
 class Background {
     constructor(ctx) {
         this.ctx = ctx;
+        this.x = 0;
+        this.y = 0;
+        this.w = this.ctx.canvas.width;
+        this.h = this.ctx.canvas.height
+        this.square = 20
+
     }
         
         
     draw() {
-        ctx.beginPath();
-        ctx.fillStyle = '#eeeff1';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-        for (let x = 0; x <= canvas.width; x += canvas.height) {
-            ctx.moveTo(0.5 + x, 0);
-            ctx.lineTo(0.5 + x, cw);
+        this.ctx.beginPath();
+        this.ctx.fillStyle = '#eeeff1';
+        this.ctx.fillRect(0, 0, this.w, this.h);
+        for (let x = 0; x <= this.w; x += this.square) {
+            this.ctx.moveTo(0.5 + x, 0);
+            this.ctx.lineTo(0.5 + x, this.w);
         }
-        for (let x = 0; x <= cw; x += box) {
-            ctx.moveTo(0, 0.5 + x);
-            ctx.lineTo(cw, 0.5 + x);
+        for (let x = 0; x <= this.w; x += this.square) {
+            this.ctx.moveTo(0, 0.5 + x);
+            this.ctx.lineTo(this.w, 0.5 + x);
         }
-        ctx.strokeStyle = '#FFFFFE';
-        ctx.stroke();
-        ctx.closePath();
+        this.ctx.strokeStyle = '#FFFFFE';
+        this.ctx.stroke();
+        this.ctx.closePath();
     
-        ctx.lineWidth = 2;
-        ctx.strokeStyle = "#84b71c";
-        ctx.strokeRect(0, 0, cw, ch);
+        this.ctx.lineWidth = 2;
+        ctx.strokeStyle = "#87FF33";
+        ctx.strokeRect(0, 0, this.w, this.h);
     }
 }
