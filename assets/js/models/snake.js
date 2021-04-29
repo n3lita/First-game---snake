@@ -11,7 +11,6 @@ class Snake {
         this.v = 20;
 
         this.direction = 'up'
-        this.gridSquare = 26;
     }
 
 

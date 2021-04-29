@@ -5,11 +5,13 @@ class Game {
         this.ctx = ctx;
         this.snake = new Snake(ctx);
         this.background = new Background(ctx)
+        this.food = new Food(ctx)
         this.drawCount = 0;
         this.IntervalId= null;
 
         this.gameOverImg = new Image()
         this.gameOverImg.src = "./assets/Graphics/gameover.png"
+
 
     }
 
@@ -29,7 +31,7 @@ class Game {
     draw() {
         this.background.draw()
         this.snake.draw()
-        
+        this.food.draw()  
     }
 
     clear() {
@@ -60,7 +62,7 @@ class Game {
         if (this.snake.x + this.snake.w >=this.ctx.canvas.width ||  
             this.snake.y + this.snake.h >= this.ctx.canvas.height ||
             this.snake.x <= 0 ||
-            this.snake.y <=0)
+            this.snake.y <= 0)
             {
             return this.gameOver()
         }
