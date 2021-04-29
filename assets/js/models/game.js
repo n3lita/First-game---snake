@@ -8,6 +8,9 @@ class Game {
         this.drawCount = 0;
         this.IntervalId= null;
 
+        this.gameOverImg = new Image()
+        this.gameOverImg.src = "./assets/Graphics/gameover.png"
+
     }
 
 
@@ -20,7 +23,7 @@ class Game {
             if (this.drawCount > 60){
                 this.drawCount = 0
             }
-        }, 1000 / 60);
+        }, 300);
     }
 
     draw() {
@@ -43,14 +46,14 @@ class Game {
 
     gameOver() {
         clearInterval(this.intervalId);
-        this.ctx.fillStyle = "black"
-        this.ctx.font = "40px Verdana";
-        this.ctx.textAlign = "center";
-        this.ctx.fillText(
-            "GAME OVER",
-            this.ctx.canvas.width / 2,
-            this.ctx.canvas.height / 2
+        this.ctx.drawImage(
+        this.gameOverImg,
+        159.25,
+        203.75, 
+        201.5,
+        112.5
         );
+        //img size: 806x450   
     }
 
     checkCollision() {

@@ -8,9 +8,10 @@ class Snake {
         this.w = 20;
         this.h = 20;
 
-        this.v = 1;
+        this.v = 20;
 
         this.direction = 'up'
+        this.gridSquare = 26;
     }
 
 
