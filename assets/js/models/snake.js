@@ -11,6 +11,8 @@ class Snake {
         this.v = 20;
 
         this.direction = 'up'
+
+        let snake = []
     }
 
 
@@ -55,4 +57,11 @@ class Snake {
             }
         }
     }
+
+    collideWith(element) {
+        const colX = this.x + this.w >= element.x && this.x <= element.x + element.w
+        const colY = this.y + this.h >= element.y && this.y <= element.y + element.h
+        return colX && colY
+    }
+
 }

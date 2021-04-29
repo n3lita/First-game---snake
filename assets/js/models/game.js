@@ -11,10 +11,11 @@ class Game {
 
         this.gameOverImg = new Image()
         this.gameOverImg.src = "./assets/Graphics/gameover.png"
+        this.gameOverImg.width = 806 / 4
+        this.gameOverImg.height = 450 / 4
 
 
     }
-
 
     start() {
         this.intervalId = setInterval(() => {
@@ -22,6 +23,7 @@ class Game {
             this.move();
             this.draw();
             this.checkCollision()
+            this.checkEat()
             if (this.drawCount > 60){
                 this.drawCount = 0
             }
@@ -52,19 +54,24 @@ class Game {
         this.gameOverImg,
         159.25,
         203.75, 
-        201.5,
-        112.5
-        );
-        //img size: 806x450   
+        this.gameOverImg.width,
+        this.gameOverImg.height
+        );  
     }
 
     checkCollision() {
-        if (this.snake.x + this.snake.w >=this.ctx.canvas.width ||  
-            this.snake.y + this.snake.h >= this.ctx.canvas.height ||
-            this.snake.x <= 0 ||
-            this.snake.y <= 0)
+        if (this.snake.x + this.snake.w > this.ctx.canvas.width ||  
+            this.snake.y + this.snake.h > this.ctx.canvas.height ||
+            this.snake.x < 0 ||
+            this.snake.y < 0)
             {
             return this.gameOver()
+        }
+    }
+
+    checkEat() {
+        if(this.snake.collideWith(this.food)) {
+            this.food = new Food(this.ctx)
         }
     }
 }
