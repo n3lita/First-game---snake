@@ -16,7 +16,8 @@ class Game {
             this.clear();
             this.move();
             this.draw();
-            if (this.drawCount > 500){
+            this.checkCollision()
+            if (this.drawCount > 60){
                 this.drawCount = 0
             }
         }, 1000 / 60);
@@ -42,12 +43,23 @@ class Game {
 
     gameOver() {
         clearInterval(this.intervalId);
-        this.ctx.font = "40px Comic Sans MS";
+        this.ctx.fillStyle = "black"
+        this.ctx.font = "40px Verdana";
         this.ctx.textAlign = "center";
         this.ctx.fillText(
             "GAME OVER",
             this.ctx.canvas.width / 2,
             this.ctx.canvas.height / 2
         );
+    }
+
+    checkCollision() {
+        if (this.snake.x + this.snake.w >=this.ctx.canvas.width ||  
+            this.snake.y + this.snake.h >= this.ctx.canvas.height ||
+            this.snake.x <= 0 ||
+            this.snake.y <=0)
+            {
+            return this.gameOver()
+        }
     }
 }

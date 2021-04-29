@@ -2,22 +2,21 @@ class Snake {
     constructor(ctx) {
         this.ctx = ctx;
 
-        this.x = 250;
-        this.y = 250;
+        this.x = this.ctx.canvas.width / 2;
+        this.y = this.ctx.canvas.height / 2;
 
         this.w = 20;
         this.h = 20;
 
-        this.v = 0.5;
+        this.v = 1;
 
         this.direction = 'up'
-        this.gridSquare = 25;
     }
 
 
     draw() {
         this.ctx.save()
-        this.ctx.fillStyle = "#87FF33"
+        this.ctx.fillStyle = "#699a27"
         this.ctx.fillRect(this.x, this.y, this.w, this.h)
         this.ctx.restore()
     }
