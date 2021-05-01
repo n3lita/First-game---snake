@@ -8,7 +8,7 @@ class Game {
         this.snake = new Snake(ctx);
         this.background = new Background(ctx)
         this.food = this.generateFood()
-
+        
         this.drawCount = 0;
         this.IntervalId = null;
 

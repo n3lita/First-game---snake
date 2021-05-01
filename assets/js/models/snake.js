@@ -28,16 +28,19 @@ class Snake {
         })
     }
 
-    move() { 
+    move() {
         if (this.needsGrow) {
             this.needsGrow = false;
             console.log('creciendo')
-            const node = new Tailnode(this.ctx,this.x,this.y)
+            const node = new Tailnode(this.ctx, this.x, this.y)
             this.tail.push(node)
             console.log(this.tail)
         }
 
-
+        if (this.tail.length > 1) {
+            this.tail[0].x = this.x
+            this.tail[0].y = this.y
+        }
         if (this.direction === 'up') {
             this.y -= this.v;
         } else if (this.direction === 'down') {
@@ -45,28 +48,32 @@ class Snake {
         } else if (this.direction === 'right') {
             this.x += this.v;
         } else if (this.direction === 'left') {
-            this.x-= this.v;
+            this.x -= this.v;
         }
-    } 
+        for (let i = this.tail.length - 1; i > 0; i--) {
+            this.tail[i].x = this.tail[i - 1].x
+            this.tail[i].y = this.tail[i - 1].y
+        }
+    }
 
     onKeyEvent(event) {
         if (event.type === 'keydown') {
             switch (event.keyCode) {
                 case UP:
-                    if(this.direction != 'down')
-                    this.direction = 'up'
+                    if (this.direction != 'down')
+                        this.direction = 'up'
                     break;
                 case DOWN:
-                    if(this.direction != 'up')
-                    this.direction = 'down'
+                    if (this.direction != 'up')
+                        this.direction = 'down'
                     break;
                 case RIGHT:
-                    if(this.direction != 'left')
-                    this.direction = 'right'
+                    if (this.direction != 'left')
+                        this.direction = 'right'
                     break;
                 case LEFT:
-                    if(this.direction != 'right')
-                    this.direction = 'left'
+                    if (this.direction != 'right')
+                        this.direction = 'left'
                     break;
             }
         }

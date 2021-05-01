@@ -11,7 +11,7 @@ class Tailnode {
 
     draw() {
         this.ctx.save()
-        this.ctx.fillStyle = "#629221"
+        this.ctx.fillStyle = "#c9ef0c"
         this.ctx.fillRect(this.x, this.y, this.w, this.h)
         this.ctx.restore()
 
