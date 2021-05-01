@@ -3,16 +3,21 @@ const ctx = document.getElementById('canvas').getContext('2d');
 class Game {
     constructor(ctx) {
         this.ctx = ctx;
+        this.numberofCells = 26
+
         this.snake = new Snake(ctx);
         this.background = new Background(ctx)
-        this.food = new Food(ctx)
+        this.food = this.generateFood()
+
         this.drawCount = 0;
-        this.IntervalId= null;
+        this.IntervalId = null;
 
         this.gameOverImg = new Image()
         this.gameOverImg.src = "./assets/Graphics/gameover.png"
         this.gameOverImg.width = 806 / 4
         this.gameOverImg.height = 450 / 4
+
+        
 
 
     }
@@ -27,7 +32,7 @@ class Game {
             if (this.drawCount > 60){
                 this.drawCount = 0
             }
-        }, 300);
+        }, 200);
     }
 
     draw() {
@@ -51,11 +56,11 @@ class Game {
     gameOver() {
         clearInterval(this.intervalId);
         this.ctx.drawImage(
-        this.gameOverImg,
-        159.25,
-        203.75, 
-        this.gameOverImg.width,
-        this.gameOverImg.height
+            this.gameOverImg,
+            159.25,
+            203.75, 
+            this.gameOverImg.width,
+            this.gameOverImg.height
         );  
     }
 
@@ -71,7 +76,14 @@ class Game {
 
     checkEat() {
         if(this.snake.collideWith(this.food)) {
-            this.food = new Food(this.ctx)
+            this.food = this.generateFood()
+            this.snake.grow()
         }
+    }
+
+    generateFood(){
+        const foodX = Math.floor(Math.random() * this.numberofCells)
+        const foodY = Math.floor(Math.random() * this.numberofCells)     
+        return new Food(this.ctx, foodX, foodY)
     }
 }

@@ -1,17 +1,16 @@
 class Food {
-    constructor(ctx) {
+    constructor(ctx,x,y) {
         this.ctx = ctx;
 
         this.w = 20;
         this.h = 20
-        this.numberofCells = 26
 
         this.apple = new Image()
         this.apple.src = "./assets/Graphics/apple.png"
 
-        this.x = Math.floor(Math.random() * this.numberofCells) * this.w 
-        this.y = Math.floor(Math.random() * this.numberofCells) * this.h     
-}
+        this.x = x * this.w;
+        this.y = y * this.h;
+    }
 
     draw() {
         this.ctx.drawImage(

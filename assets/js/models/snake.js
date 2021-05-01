@@ -12,7 +12,9 @@ class Snake {
 
         this.direction = 'up'
 
-        let snake = []
+        this.tail = []
+        this.needsGrow = false
+
     }
 
 
@@ -21,10 +23,23 @@ class Snake {
         this.ctx.fillStyle = "#699a27"
         this.ctx.fillRect(this.x, this.y, this.w, this.h)
         this.ctx.restore()
+        this.tail.forEach((tailNode) => {
+            tailNode.draw()
+        })
     }
 
     move() { 
-         if (this.direction === 'up') {
+        if (this.needsGrow) {
+            this.needsGrow = false;
+            console.log('creciendo')
+            const node = new Food(this.ctx,0,0)
+            this.tail.push(node)
+            console.log(this.tail)
+        
+        }
+
+
+        if (this.direction === 'up') {
             this.y -= this.v;
         } else if (this.direction === 'down') {
             this.y += this.v;
@@ -63,5 +78,10 @@ class Snake {
         const colY = this.y + this.h >= element.y && this.y <= element.y + element.h
         return colX && colY
     }
+
+    grow() {
+        this.needsGrow = true
+    }
+
 
 }
