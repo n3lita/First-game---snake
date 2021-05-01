@@ -32,10 +32,9 @@ class Snake {
         if (this.needsGrow) {
             this.needsGrow = false;
             console.log('creciendo')
-            const node = new Food(this.ctx,0,0)
+            const node = new Tailnode(this.ctx,this.x,this.y)
             this.tail.push(node)
             console.log(this.tail)
-        
         }
 
 
