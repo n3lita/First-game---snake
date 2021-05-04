@@ -8,6 +8,8 @@ class Game {
         this.snake = new Snake(ctx);
         this.background = new Background(ctx)
         this.food = this.generateFood()
+        this.tailNode = new Tailnode(ctx)
+    //    this.score = new Score(ctx)
         
         this.drawCount = 0;
         this.IntervalId = null;
@@ -38,7 +40,7 @@ class Game {
     draw() {
         this.background.draw()
         this.snake.draw()
-        this.food.draw()  
+        this.food.draw()
     }
 
     clear() {
@@ -65,11 +67,16 @@ class Game {
     }
 
     checkCollision() {
-        if (this.snake.x + this.snake.w > this.ctx.canvas.width ||  
-            this.snake.y + this.snake.h > this.ctx.canvas.height ||
-            this.snake.x < 0 ||
-            this.snake.y < 0)
-            {
+        const wallsColission =  this.snake.x + this.snake.w > this.ctx.canvas.width ||  
+                            this.snake.y + this.snake.h > this.ctx.canvas.height ||
+                            this.snake.x < 0 ||
+                            this.snake.y < 0
+
+        const selfColission = this.snake.tail.some(tailNode => {
+            return (tailNode.x === this.snake.x && tailNode.y === this.snake.y)
+        })
+
+        if (wallsColission || selfColission) {
             return this.gameOver()
         }
     }
@@ -86,4 +93,10 @@ class Game {
         const foodY = Math.floor(Math.random() * this.numberofCells)     
         return new Food(this.ctx, foodX, foodY)
     }
+
+   /* updateScore(){
+       if(this.checkEat) {
+        this.score.value++
+       }
+    } */
 }

@@ -1,5 +1,27 @@
-canvas {
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+#canvas {
     border: 3px solid;
     margin: 0 auto;
     display: block;
-  }
+}
+
+#score{
+  font-family: 'Press Start 2P';
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.food {
+  width: 25px;
+  height: 25px;
+  margin-right: 5px;
+}
+
+.game-board {
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+

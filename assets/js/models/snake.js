@@ -19,28 +19,25 @@ class Snake {
 
 
     draw() {
+        this.tail.forEach(tailNode => tailNode.draw())
+        
         this.ctx.save()
         this.ctx.fillStyle = "#699a27"
         this.ctx.fillRect(this.x, this.y, this.w, this.h)
         this.ctx.restore()
-        this.tail.forEach((tailNode) => {
-            tailNode.draw()
-        })
     }
 
     move() {
         if (this.needsGrow) {
             this.needsGrow = false;
-            console.log('creciendo')
             const node = new Tailnode(this.ctx, this.x, this.y)
             this.tail.push(node)
             console.log(this.tail)
         }
 
-        if (this.tail.length > 1) {
-            this.tail[0].x = this.x
-            this.tail[0].y = this.y
-        }
+        const headX = this.x;
+        const headY = this.y;
+
         if (this.direction === 'up') {
             this.y -= this.v;
         } else if (this.direction === 'down') {
@@ -50,9 +47,14 @@ class Snake {
         } else if (this.direction === 'left') {
             this.x -= this.v;
         }
+
         for (let i = this.tail.length - 1; i > 0; i--) {
             this.tail[i].x = this.tail[i - 1].x
             this.tail[i].y = this.tail[i - 1].y
+        }
+        if (this.tail.length >= 1) {
+            this.tail[0].x = headX;
+            this.tail[0].y = headY;
         }
     }
 
