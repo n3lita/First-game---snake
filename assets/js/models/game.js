@@ -9,7 +9,7 @@ class Game {
         this.background = new Background(ctx)
         this.food = this.generateFood()
         this.tailNode = new Tailnode(ctx)
-    //    this.score = new Score(ctx)
+        this.score = new Score(ctx)
         
         this.drawCount = 0;
         this.IntervalId = null;
@@ -19,7 +19,6 @@ class Game {
         this.gameOverImg.width = 806 / 4
         this.gameOverImg.height = 450 / 4
 
-        
 
 
     }
@@ -41,6 +40,7 @@ class Game {
         this.background.draw()
         this.snake.draw()
         this.food.draw()
+        this.score.draw()
     }
 
     clear() {
@@ -85,6 +85,7 @@ class Game {
         if(this.snake.collideWith(this.food)) {
             this.food = this.generateFood()
             this.snake.grow()
+            this.score.value++
         }
     }
 
@@ -94,9 +95,9 @@ class Game {
         return new Food(this.ctx, foodX, foodY)
     }
 
-   /* updateScore(){
-       if(this.checkEat) {
-        this.score.value++
-       }
-    } */
+    /*updateScore() {
+        if(this.checkEat()) {
+         this.score.value++
+        }
+     } */
 }

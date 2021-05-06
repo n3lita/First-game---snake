@@ -1,12 +1,9 @@
 class Score {
-    constructor(ctx){
-    const score = document.getElementById('score-number').innerHTML
-    this.value = 17;
-
+    constructor(value) {
+        this.value = 0;
     }
 
-
     draw() {
-        this.ctx.fillText(this.value)
+        const score = document.querySelector('#score span').innerText = this.value
         }
 }
