@@ -19,7 +19,11 @@ class Game {
         this.gameOverImg.width = 806 / 4
         this.gameOverImg.height = 450 / 4
 
+        this.appleEatAudio = new Audio()
+        this.appleEatAudio.src = "./assets/sounds/Apple-bite.mp3"
 
+        this.backGroundMusic = new Audio()
+        this.backGroundMusic.src= "./assets/sounds/Funny-retro-gaming-music-beat.mp3"
 
     }
 
@@ -30,6 +34,7 @@ class Game {
             this.draw();
             this.checkCollision()
             this.checkEat()
+            this.backGroundMusic.play()
             if (this.drawCount > 60){
                 this.drawCount = 0
             }
@@ -63,7 +68,8 @@ class Game {
             203.75, 
             this.gameOverImg.width,
             this.gameOverImg.height
-        );  
+        );
+        this.backGroundMusic.stop()
     }
 
     checkCollision() {
@@ -86,6 +92,7 @@ class Game {
             this.food = this.generateFood()
             this.snake.grow()
             this.score.value++
+            this.appleEatAudio.play()
         }
     }
 
@@ -98,6 +105,7 @@ class Game {
     preview() {
         this.background.draw()
         this.score.draw()
+        
     }
 
 }
