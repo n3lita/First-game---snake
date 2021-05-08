@@ -9,7 +9,9 @@ class Game {
         this.background = new Background(ctx)
         this.food = this.generateFood()
         this.tailNode = new Tailnode(ctx)
+
         this.score = new Score(ctx)
+        this.maxScore = new MaxScore(ctx)
         
         this.drawCount = 0;
         this.IntervalId = null;
@@ -51,6 +53,7 @@ class Game {
         this.snake.draw()
         this.food.draw()
         this.score.draw()
+        this.maxScore.draw()
     }
 
     clear() {
@@ -77,6 +80,7 @@ class Game {
         this.backGroundMusic.pause()
         this.gameOverStatus = true;
         this.retrybtn()
+        this.updateMaxScore()
     }
 
     checkCollision() {
@@ -115,6 +119,7 @@ class Game {
     preview() {
         this.background.draw()
         this.score.draw()
+        this.maxScore.draw()
         
     }
 
@@ -130,4 +135,9 @@ class Game {
             document.getElementById('retry-btn').style.display = "none";
     }
 
+    updateMaxScore() {
+        if (this.score.value > this.maxScore.value) {
+                localStorage.maxScore = this.score.value
+        }
+    }
 }

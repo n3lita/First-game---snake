@@ -5,11 +5,15 @@
     display: block;
 }
 
-#score{
+#score, #max-score {
   font-family: 'Press Start 2P';
   margin-top: 10px;
   display: flex;
   align-items: center;
+}
+
+#max-score {
+  font-size: 10px;
 }
 
 .food {
@@ -58,7 +62,7 @@
 
 #instructions {
 position: absolute;
-bottom: 50px;
+bottom: 100px;
 font-family: 'Press Start 2P';
 font-size: 10px;
 }
