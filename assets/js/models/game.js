@@ -23,22 +23,27 @@ class Game {
         this.appleEatAudio.src = "./assets/sounds/Apple-bite.mp3"
 
         this.backGroundMusic = new Audio()
+        this.backGroundMusic.loop = true;
+
         this.backGroundMusic.src= "./assets/sounds/Funny-retro-gaming-music-beat.mp3"
+
+        this.gameOverStatus = false;
+        this.fps = 200;
 
     }
 
     start() {
+        this.backGroundMusic.play()
         this.intervalId = setInterval(() => {
             this.clear();
             this.move();
             this.draw();
             this.checkCollision()
             this.checkEat()
-            this.backGroundMusic.play()
             if (this.drawCount > 60){
                 this.drawCount = 0
             }
-        }, 200);
+        }, this.fps);
     }
 
     draw() {
@@ -69,7 +74,9 @@ class Game {
             this.gameOverImg.width,
             this.gameOverImg.height
         );
-        this.backGroundMusic.stop()
+        this.backGroundMusic.pause()
+        this.gameOverStatus = true;
+        this.retrybtn()
     }
 
     checkCollision() {
@@ -93,6 +100,9 @@ class Game {
             this.snake.grow()
             this.score.value++
             this.appleEatAudio.play()
+            clearInterval(this.intervalId)
+            this.fps /= 1.2
+            this.start()
         }
     }
 
@@ -106,6 +116,18 @@ class Game {
         this.background.draw()
         this.score.draw()
         
+    }
+
+    retrybtn() {
+        if(this.gameOverStatus) {
+            document.getElementById('retry-btn').style.display = 'block';
+        }
+    }
+
+    reinitGame() {
+            this.start();
+            this.gameOverImg.remove()
+            document.getElementById('retry-btn').style.display = "none";
     }
 
 }

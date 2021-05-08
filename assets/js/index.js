@@ -1,22 +1,30 @@
 document.addEventListener("DOMContentLoaded", function (event) {
   console.log("DOM fully loaded and parsed");
 
-const game = new Game(ctx)
+window.game = new Game(ctx)
   game.preview()
 
 
-const button = document.getElementById('start-btn');
+const startButton = document.getElementById('start-btn');
 const snakeimg = document.getElementById('snake')
 const instructions = document.getElementById('instructions')
-button.addEventListener('click', event => {
-  button.remove()
+startButton.addEventListener('click', event => {
+  startButton.remove()
   snakeimg.remove()
   instructions.remove()
   game.start()
 })
 
 
-  
+const retryButton = document.getElementById('retry-btn');
+retryButton.addEventListener('click', event => {
+  game.gameOverStatus = false;
+  game = new Game(ctx)
+  game.start()
+  retryButton.style.display = 'none';
+})
+
+
   document.addEventListener('keydown', event => {
     game.onKeyEvent(event)
   })
