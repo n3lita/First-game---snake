@@ -20,6 +20,8 @@ class Game {
         this.gameOverImg.src = "./assets/Graphics/gameover.png"
         this.gameOverImg.width = 806 / 4
         this.gameOverImg.height = 450 / 4
+        this.gameOverSound = new Audio()
+        this.gameOverSound.src = "./assets/sounds/ES_Video Game Descend 6 - SFX Producer.mp3"
 
         this.appleEatAudio = new Audio()
         this.appleEatAudio.src = "./assets/sounds/Apple-bite.mp3"
@@ -31,6 +33,7 @@ class Game {
 
         this.gameOverStatus = false;
         this.fps = 200;
+
 
     }
 
@@ -81,6 +84,7 @@ class Game {
         this.gameOverStatus = true;
         this.retrybtn()
         this.updateMaxScore()
+        this.gameOverSound.play()
     }
 
     checkCollision() {
@@ -118,11 +122,9 @@ class Game {
 
     preview() {
         this.background.draw()
-        this.score.draw()
         this.maxScore.draw()
-        
+        document.getElementById('score').style.display = "none";
     }
-
     retrybtn() {
         if(this.gameOverStatus) {
             document.getElementById('retry-btn').style.display = 'block';

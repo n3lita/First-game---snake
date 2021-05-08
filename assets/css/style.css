@@ -62,11 +62,22 @@
 
 #instructions {
 position: absolute;
-bottom: 100px;
+bottom: 60px;
 font-family: 'Press Start 2P';
 font-size: 10px;
 }
 
+
+#update {
+  width: 15px;
+  margin: 0px
+}
+
+#updateBtn {
+  padding: -2px;
+  border: none;
+  background-color: white;
+}
 
 
 

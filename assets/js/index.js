@@ -12,6 +12,7 @@ startButton.addEventListener('click', event => {
   startButton.remove()
   snakeimg.remove()
   instructions.remove()
+  document.getElementById('score').style.display = "block"
   game.start()
 })
 
@@ -24,6 +25,10 @@ retryButton.addEventListener('click', event => {
   retryButton.style.display = 'none';
 })
 
+const updatemaxScorebutton = document.getElementById('updateBtn');
+updatemaxScorebutton.addEventListener('click', event => {
+localStorage.maxScore = 0;
+})
 
   document.addEventListener('keydown', event => {
     game.onKeyEvent(event)
