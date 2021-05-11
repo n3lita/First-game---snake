@@ -76,8 +76,8 @@ class Game {
           this.background.draw()
         this.ctx.drawImage(
             this.gameOverImg,
-            this.ctx.canvas.width / 2 - this.gameOverImg.width ,
-            this.ctx.canvas.width / 2 - this.gameOverImg.height,
+            (this.ctx.canvas.width - this.gameOverImg.width) / 2,
+            (this.ctx.canvas.width - this.gameOverImg.height) / 2,
             this.gameOverImg.width,
             this.gameOverImg.height
         );
