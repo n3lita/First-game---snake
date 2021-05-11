@@ -73,10 +73,11 @@ class Game {
 
     gameOver() {
         clearInterval(this.intervalId);
+          this.background.draw()
         this.ctx.drawImage(
             this.gameOverImg,
-            159.25,
-            203.75, 
+            this.ctx.canvas.width / 2,
+            this.ctx.canvas.width / 2, 
             this.gameOverImg.width,
             this.gameOverImg.height
         );
